@@ -1,0 +1,1 @@
+This is where your assests go, i.e images 
