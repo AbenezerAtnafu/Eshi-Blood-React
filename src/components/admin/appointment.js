@@ -1,8 +1,8 @@
 import React from "react";
 import { Table, Input, Button, Space } from "antd";
+import { Link } from "react-router-dom";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -11,7 +11,7 @@ const data = [
     Slogan: "Let's Donate",
 
     UpdatedAt: null,
-    EventName: "Request",
+    EventName: "rotract blood donating session",
     EventGoal: 50,
     EventOrganizer: 2,
     TotalDonations: 10,
@@ -57,7 +57,7 @@ const data = [
   },
 ];
 
-class EventsList extends React.Component {
+class AppointmentsList extends React.Component {
   state = {
     searchText: "",
     searchedColumn: "",
@@ -162,23 +162,17 @@ class EventsList extends React.Component {
   render() {
     const columns = [
       {
-        title: "REASON",
-        dataIndex: "Reason",
-        key: "Reason",
+        title: "APT ID",
+        dataIndex: "ApiID",
+        key: "ApiID",
         width: "30%",
-        ...this.getColumnSearchProps("Reason"),
-      },
-      {
-        title: "UNITS NEEDED",
-        dataIndex: "UnitsNeeded",
-        key: "UnitsNeeded",
-        width: "20%",
-        ...this.getColumnSearchProps("UnitsNeeded"),
+        ...this.getColumnSearchProps("ApiID"),
       },
       {
         title: "START DATE",
         dataIndex: "StartDate",
         key: "StartDate",
+        width: "20%",
         ...this.getColumnSearchProps("StartDate"),
       },
       {
@@ -188,28 +182,40 @@ class EventsList extends React.Component {
         ...this.getColumnSearchProps("EndDate"),
       },
       {
-        title: "TOTAL DONATIONS",
-        dataIndex: "TotalDonation",
-        key: "TotalDonation",
-        ...this.getColumnSearchProps("TotalDonation"),
-      },
-      {
-        title: "BLOOD TYPE",
-        dataIndex: "BloodType",
-        key: "BloodType",
-        ...this.getColumnSearchProps("BloodType"),
-      },
-      {
         title: "CREATED BY",
         dataIndex: "CreatedBy",
         key: "CreatedBy",
         ...this.getColumnSearchProps("CreatedBy"),
       },
       {
-        title: "CREATED AT",
-        dataIndex: "CreatedAt",
-        key: "CreatedAt",
-        ...this.getColumnSearchProps("CreatedAt"),
+        title: "START DAY",
+        dataIndex: "startDate",
+        key: "startDate",
+        ...this.getColumnSearchProps("startDate"),
+      },
+      {
+        title: "END DAY",
+        dataIndex: "endDate",
+        key: "endDate",
+        ...this.getColumnSearchProps("endDate"),
+      },
+      {
+        title: "DONATION CENTER",
+        dataIndex: "DonationCenter",
+        key: "DonationCenter",
+        ...this.getColumnSearchProps("DonationCenter"),
+      },
+      {
+        title: "API TYE",
+        dataIndex: "ApiType",
+        key: "ApiType",
+        ...this.getColumnSearchProps("ApiType"),
+      },
+      {
+        title: "DONOT",
+        dataIndex: "Donot",
+        key: "Donot",
+        ...this.getColumnSearchProps("Donot"),
       },
       {
         title: "STATUS",
@@ -218,31 +224,25 @@ class EventsList extends React.Component {
         ...this.getColumnSearchProps("Status"),
       },
       {
-        title: "TYPE",
-        dataIndex: "Type",
-        key: "Type",
-        ...this.getColumnSearchProps("Type"),
-      },
-      {
-        title: "Action",
+        title: "ACTION",
         dataIndex: "",
         key: "x",
         render: () => (
           <div>
-            <a>Close</a> | <a>Delete</a>
+            <Button type="primary">
+          <Link to="/admin/events/create">X</Link>
+        </Button>
           </div>
         ),
       },
     ];
     return (
       <div>
-        <Button type="primary">
-          <Link to="/admin/requests/create">New Request</Link>
-        </Button>
+       
         <Table columns={columns} dataSource={data} />
       </div>
     );
   }
 }
 
-export default EventsList;
+export default AppointmentsList;

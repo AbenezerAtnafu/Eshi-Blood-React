@@ -162,60 +162,66 @@ class DonationCenter extends React.Component {
   render() {
     const columns = [
       {
-        title: "Event Name",
-        dataIndex: "EventName",
-        key: "EventName",
+        title: "NAME",
+        dataIndex: "Name",
+        key: "Name",
         width: "30%",
-        ...this.getColumnSearchProps("EventName"),
+        ...this.getColumnSearchProps("Name"),
       },
       {
-        title: "Slogan",
-        dataIndex: "Slogan",
-        key: "Slogan",
+        title: "CREATED AT",
+        dataIndex: "CreatedAt",
+        key: "CreatedAt",
         width: "20%",
-        ...this.getColumnSearchProps("Slogan"),
+        ...this.getColumnSearchProps("CreatedAt"),
       },
       {
-        title: "EventGoal",
-        dataIndex: "EventGoal",
-        key: "EventGoal",
-        ...this.getColumnSearchProps("EventGoal"),
+        title: "START DATE",
+        dataIndex: "StartDate",
+        key: "StartDate",
+        ...this.getColumnSearchProps("StartDate"),
       },
       {
-        title: "Total Donations",
-        dataIndex: "TotalDonations",
-        key: "TotalDonations",
-        ...this.getColumnSearchProps("TotalDonations"),
+        title: "END DATE",
+        dataIndex: "EndDate",
+        key: "EndDate",
+        ...this.getColumnSearchProps("EndDate"),
       },
       {
-        title: "Start Date",
-        dataIndex: "startDate",
-        key: "startDate",
-        ...this.getColumnSearchProps("startDate"),
+        title: "STATE",
+        dataIndex: "State",
+        key: "State",
+        ...this.getColumnSearchProps("State"),
       },
       {
-        title: "End Date",
-        dataIndex: "endDate",
-        key: "endDate",
-        ...this.getColumnSearchProps("endDate"),
+        title: "CITY",
+        dataIndex: "City",
+        key: "City",
+        ...this.getColumnSearchProps("City"),
       },
       {
-        title: "Organizer Name",
-        dataIndex: "organizerName",
-        key: "organizerName",
-        ...this.getColumnSearchProps("organizerName"),
+        title: "CREATED BY ID",
+        dataIndex: "CreatedBy",
+        key: "CreatedBy",
+        ...this.getColumnSearchProps("CreatedBy"),
       },
       {
-        title: "Organizer's Phone",
-        dataIndex: "organizerPhone",
-        key: "organizerPhone",
-        ...this.getColumnSearchProps("organizerPhone"),
+        title: "LAST UPDATED",
+        dataIndex: "LastUpdate",
+        key: "LastUpdate",
+        ...this.getColumnSearchProps("LastUpdate"),
       },
       {
-        title: "Status",
+        title: "STATUS",
         dataIndex: "Status",
         key: "Status",
         ...this.getColumnSearchProps("Status"),
+      },
+      {
+        title: "TYPE",
+        dataIndex: "Type",
+        key: "Type",
+        ...this.getColumnSearchProps("Type"),
       },
       {
         title: "Action",
@@ -234,6 +240,7 @@ class DonationCenter extends React.Component {
           <Link to="/admin/donationCenters/create">New Donation Center</Link>
         </Button>
         <Table columns={columns} dataSource={data} />
+        
       </div>
     );
   }
