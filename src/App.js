@@ -2,11 +2,13 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/login";
 import SignUpPage from "./pages/sign-up";
 import NotFoundPage from "./pages/not-found";
+import EventsList from "./pages/admin/EventsList";
+import AdminDashboard from "./components/admin/adminDashboard";
 
 const App = () => {
   return (
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         <LoginPage />
       </Route>
       <Route path="/login">
@@ -15,6 +17,17 @@ const App = () => {
       <Route path="/sign-up">
         <SignUpPage />
       </Route>
+      {/* 
+        Admin route
+      */}
+      {/* <Route path="/admin/events">
+        <EventsList />
+      </Route> */}
+
+      <Route path="/admin">
+        <AdminDashboard />
+      </Route>
+
       <Route path="*">
         <NotFoundPage />
       </Route>
