@@ -1,9 +1,9 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 import LoginPage from "./pages/login";
 import SignUpPage from "./pages/sign-up";
 import NotFoundPage from "./pages/not-found";
-import AdminDashboard from './admin/adminDashboard';
-
+import EventsList from "./pages/admin/EventsList";
+import AdminDashboard from "./components/admin/adminDashboard";
 
 const App = () => {
   return (
@@ -17,10 +17,17 @@ const App = () => {
       <Route path="/sign-up">
         <SignUpPage />
       </Route>
-      
-      <Route path="/admin/dashboard">
+      {/* 
+        Admin route
+      */}
+      {/* <Route path="/admin/events">
+        <EventsList />
+      </Route> */}
+
+      <Route path="/admin">
         <AdminDashboard />
       </Route>
+
       <Route path="*">
         <NotFoundPage />
       </Route>
