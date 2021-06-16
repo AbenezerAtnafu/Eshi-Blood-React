@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Input, Button, Space } from "antd";
+import { Link } from "react-router-dom";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -166,8 +167,6 @@ class EventsList extends React.Component {
         key: "EventName",
         width: "30%",
         ...this.getColumnSearchProps("EventName"),
-        sorter: (a, b) => a.EventName.length - b.EventName.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Slogan",
@@ -175,64 +174,48 @@ class EventsList extends React.Component {
         key: "Slogan",
         width: "20%",
         ...this.getColumnSearchProps("Slogan"),
-        sorter: (a, b) => a.Slogan.length - b.Slogan.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "EventGoal",
         dataIndex: "EventGoal",
         key: "EventGoal",
         ...this.getColumnSearchProps("EventGoal"),
-        sorter: (a, b) => a.EventGoal.length - b.EventGoal.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Total Donations",
         dataIndex: "TotalDonations",
         key: "TotalDonations",
         ...this.getColumnSearchProps("TotalDonations"),
-        sorter: (a, b) => a.TotalDonations.length - b.TotalDonations.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Start Date",
         dataIndex: "startDate",
         key: "startDate",
         ...this.getColumnSearchProps("startDate"),
-        sorter: (a, b) => a.startDate.length - b.startDate.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "End Date",
         dataIndex: "endDate",
         key: "endDate",
         ...this.getColumnSearchProps("endDate"),
-        sorter: (a, b) => a.endDate.length - b.endDate.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Organizer Name",
         dataIndex: "organizerName",
         key: "organizerName",
         ...this.getColumnSearchProps("organizerName"),
-        sorter: (a, b) => a.organizerName.length - b.organizerName.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Organizer's Phone",
         dataIndex: "organizerPhone",
         key: "organizerPhone",
         ...this.getColumnSearchProps("organizerPhone"),
-        sorter: (a, b) => a.organizerPhone.length - b.organizerPhone.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Status",
         dataIndex: "Status",
         key: "Status",
         ...this.getColumnSearchProps("Status"),
-        sorter: (a, b) => a.Status.length - b.Status.length,
-        sortDirections: ["descend", "ascend"],
       },
       {
         title: "Action",
@@ -247,7 +230,9 @@ class EventsList extends React.Component {
     ];
     return (
       <div>
-        <button>New Event</button>
+        <Button type="primary">
+          <Link to="/admin/events/create">New Event</Link>
+        </Button>
         <Table columns={columns} dataSource={data} />
       </div>
     );

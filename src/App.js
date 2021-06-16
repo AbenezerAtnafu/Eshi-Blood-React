@@ -1,9 +1,8 @@
-import { Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/login";
 import SignUpPage from "./pages/sign-up";
 import NotFoundPage from "./pages/not-found";
-import EventsList from "./pages/admin/EventsList";
-import AdminDashboard from "./components/admin/adminDashboard";
+import AdminDashboard from "./pages/admin";
 
 const App = () => {
   return (
@@ -32,8 +31,6 @@ const App = () => {
         <NotFoundPage />
       </Route>
     </Switch>
-
-    
   );
 };
 
