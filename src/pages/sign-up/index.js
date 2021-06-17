@@ -332,7 +332,6 @@ const SignUpPage = () => {
 
   return (<>
     <Layout>
-      <Header></Header>
       <Content>
         <Row>
           <Col sm={18}>
@@ -340,6 +339,7 @@ const SignUpPage = () => {
               <Col offset={16}><h1>Register</h1></Col>
             </Row>
             <div className="signup-container">
+
               <Form
                 {...formItemLayout}
                 form={form}
@@ -474,12 +474,11 @@ const SignUpPage = () => {
                   </Button>
                 </Form.Item>
               </Form>
+            
             </div>
           </Col>
         </Row>
       </Content>
-      <Footer></Footer>
-
     </Layout>
 
   </>);

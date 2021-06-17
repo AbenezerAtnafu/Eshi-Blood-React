@@ -1,4 +1,7 @@
 import { Form, Input, Button, Typography, Card } from "antd";
+import Header from "../../components/user/header";
+import Events from "../user/event/events";
+
 import "./style.css";
 
 const Login = () => {
@@ -6,7 +9,10 @@ const Login = () => {
     console.log("Success:", values);
   };
   return (
+    <>
+
     <div className="login-container">
+      
       <Card className="login-card">
         <Typography.Title style={{ textAlign: "center" }}>
           Login
@@ -34,6 +40,7 @@ const Login = () => {
         </Form>
       </Card>
     </div>
+    </>
   );
 };
 

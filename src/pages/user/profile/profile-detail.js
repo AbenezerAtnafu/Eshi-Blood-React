@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Avatar, Card, Layout, Form, Input, Cascader, DatePicker, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Avatar, Card, Form, Input, Cascader, DatePicker, Select, Row, Col, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import "./style.css";
-
-const { Header, Footer, Sider, Content } = Layout;
 
 const { Option } = Select;
 const residences = [
@@ -12,12 +10,102 @@ const residences = [
         label: 'Addis Ababa',
         children: [
             {
-                value: 'Saris',
-                label: 'Saris',
+                value: 'Addis Ketema',
+                label: 'Addis Ketema',
+                children: [
+                    {
+                        value: '01',
+                        label: '01',
+                    },
+                ],
+            },
+            {
+                value: 'Akaki Kaliti',
+                label: 'Akaki Kaliti',
+                children: [
+                    {
+                        value: '02',
+                        label: '02',
+                    },
+                ],
+            },
+            {
+                value: 'Arada',
+                label: 'Arada',
+                children: [
+                    {
+                        value: '03',
+                        label: '03',
+                    },
+                ],
+            },
+            {
+                value: 'Bole',
+                label: 'Addis Ketema',
+                children: [
+                    {
+                        value: '04',
+                        label: '04',
+                    },
+                ],
+            },
+            {
+                value: 'Gullele',
+                label: 'Gullele',
                 children: [
                     {
                         value: '05',
                         label: '05',
+                    },
+                ],
+            },
+            {
+                value: 'Kirkos',
+                label: 'Kirkos',
+                children: [
+                    {
+                        value: '06',
+                        label: '06',
+                    },
+                ],
+            },
+            {
+                value: 'Kolfe Keranio',
+                label: 'Kolfe Keranio',
+                children: [
+                    {
+                        value: '07',
+                        label: '07',
+                    },
+                ],
+            },
+            {
+                value: 'Lideta',
+                label: 'Lideta',
+                children: [
+                    {
+                        value: '08',
+                        label: '08',
+                    },
+                ],
+            },
+            {
+                value: 'Nifas Silk-Lafto',
+                label: 'Nifas Silk-Lafto',
+                children: [
+                    {
+                        value: '09',
+                        label: '09',
+                    },
+                ],
+            },
+            {
+                value: 'Yeka',
+                label: 'Yeka',
+                children: [
+                    {
+                        value: '10',
+                        label: '10',
                     },
                 ],
             },
@@ -28,12 +116,12 @@ const residences = [
         label: 'Amhara',
         children: [
             {
-                value: 'nanjing',
-                label: 'Nanjing',
+                value: 'Gonder',
+                label: 'Gonder',
                 children: [
                     {
-                        value: 'zhonghuamen',
-                        label: 'Zhong Hua Men',
+                        value: '05',
+                        label: '05',
                     },
                 ],
             },
@@ -219,13 +307,12 @@ function handleChange(value) {
     console.log(`selected ${value}`);
 }
 
+
 const ProfileDetail = () => {
     const [form] = Form.useForm();
-
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
-
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -237,67 +324,84 @@ const ProfileDetail = () => {
             </Select>
         </Form.Item>
     );
-    const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
-    const onWebsiteChange = (value) => {
-        if (!value) {
-            setAutoCompleteResult([]);
-        } else {
-            setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
-        }
-    };
+    const [user, setUser] = useState({
+        "FirstName": "Admin1",
+        "LastName": "Atnafu",
+        "UserName": "Baba",
+        "Gender": "Male",
+        "BirthDate": "08/23/1999, 00:00:00",
+        "CreatedAt": "06/16/2021, 07:19:51",
+        "UpdatedAt": "06/16/2021, 07:19:51",
+        "MartialStatus": "Single",
+        "BloodType": "A+",
+        "State": "Addis Ababa",
+        "Zone": "Lideta",
+        "Woreda": "08",
+        "Appointments": 13,
+        "Email": "semeretalegn627@gmail.com",
+        "PhoneNumber":"0953894183"
+    });
 
-    const websiteOptions = autoCompleteResult.map((website) => ({
-        label: website,
-        value: website,
-    }));
     return (<>
-        <Layout>
-            <Header>Header</Header>
-            <Content>
-                <Row>
-                    <Col sm={4}></Col>
-                    <Col sm={8}>
-                        <Card title="Personal Information Details" className="edit-form" style={{ width: 400 }}>
-                            <Row>
-                                <Col span={24}>
-                                    <Avatar className="avatar" size={64} icon={<UserOutlined />} />
-                                </Col>
-                            </Row>
-                            <div className="details">
-                                <Row>
-                                    <Col md={12}>Full name</Col>
-                                    <Col md={12}>Abebe Weynua</Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12}>Username</Col>
-                                    <Col sm={12}>Gaga</Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12}>Gender</Col>
-                                    <Col sm={12}>Male</Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12}>Birth date</Col>
-                                    <Col sm={12}>12/10/2000</Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12}>Martial Status</Col>
-                                    <Col sm={12}>Single</Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12}>Blood Type</Col>
-                                    <Col sm={12}>A</Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12}>Appointments</Col>
-                                    <Col sm={12}>0</Col>
-                                </Row>
 
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col sm={8}>
+        <div>
+            <Row>
+                <Col sm={2}></Col>
+                <Col sm={8}>
+                    <Card title="Personal Information Details" className="edit-form box-shadow">
+                        <Row>
+                            <Col span={24}>
+                                <Avatar className="avatar" size={64} icon={<UserOutlined />} />
+                            </Col>
+                        </Row>
+                        <div className="details">
+                            <Row>
+                                <Col md={12}>Full name</Col>
+                                <Col md={12}>{user.FirstName + " " + user.LastName}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Username</Col>
+                                <Col sm={12}>{user.UserName}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Gender</Col>
+                                <Col sm={12}>{user.Gender}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Birth date</Col>
+                                <Col sm={12}>{user.BirthDate.split(",")[0]}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Martial Status</Col>
+                                <Col sm={12}>{user.MartialStatus}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Blood Type</Col>
+                                <Col sm={12}>{user.BloodType}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Appointments</Col>
+                                <Col sm={12}>{user.Appointments}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Address</Col>
+                                <Col sm={12}>{user.State + " / " + user.Zone + " / " + user.Woreda}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Email</Col>
+                                <Col sm={12}>{user.Email}</Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>Phone Number</Col>
+                                <Col sm={12}>{user.PhoneNumber}</Col>
+                            </Row>
+                        </div>
+                    </Card>
+                </Col>
+                <Col sm={2}></Col>
+                <Col sm={8}>
+                    <Card title="Edit Profile" className="box-shadow">
                         <Form className="edit-form"
                             {...formItemLayout}
                             form={form}
@@ -306,38 +410,49 @@ const ProfileDetail = () => {
                             initialValues={{
                                 residence: ['Addis Ababa', '6Kilo', 'ShiroMeda'],
                                 prefix: '251',
+                                user: user
                             }}
                             scrollToFirstError
                         >
-                            <Form.Item label="First name">
-                                <Input placeholder="First name" />
+                            <Form.Item name="firstname" label="First name"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please enter your first name!',
+                                    },
+                                ]}>
+                                <Input placeholder="First name" value={user.FirstName} />
                             </Form.Item>
-                            <Form.Item label="Last name">
+
+                            <Form.Item name="lastname" label="Last name" rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter your last name!',
+                                },
+                            ]}>
                                 <Input placeholder="Last name" />
                             </Form.Item>
-                            <Form.Item label="Gender">
-                                <Select defaultValue="Male" style={{ width: 120 }} onChange={handleChange}>
-                                    <Option value="Male">Male</Option>
-                                    <Option value="Female">Female</Option>
-                                </Select>
-                            </Form.Item>
-                            <Form.Item label="Birth date">
-                                <DatePicker />
-                            </Form.Item>
-                            <Form.Item label="User name">
+                            <Form.Item name="username" label="User name" rules={[
+                                {
+                                    type: 'string',
+                                    required: true,
+                                    message: 'Please input a username!',
+                                },
+                            ]}>
                                 <Input placeholder="User name" />
                             </Form.Item>
+
                             <Form.Item
                                 name="email"
-                                label="E-mail"
+                                label="Email"
                                 rules={[
                                     {
                                         type: 'email',
-                                        message: 'The input is not valid E-mail!',
+                                        message: 'The input is not valid Email!',
                                     },
                                     {
                                         required: true,
-                                        message: 'Please input your E-mail!',
+                                        message: 'Please input your Email!',
                                     },
                                 ]}
                             >
@@ -362,25 +477,7 @@ const ProfileDetail = () => {
                                     },
                                 ]}
                             >
-                                <Cascader options={residences} />
-                            </Form.Item>
-
-                            <Form.Item
-                                name="bloodtype"
-                                label="Blood Type"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please select gender!',
-                                    },
-                                ]}
-                            >
-                                <Select placeholder="Blood Type">
-                                    <Option value="A">A</Option>
-                                    <Option value="B">B</Option>
-                                    <Option value="AB">AB</Option>
-                                    <Option value="O">O</Option>
-                                </Select>
+                                <Cascader options={residences} placeholder="City / Subcity / Woreda" />
                             </Form.Item>
 
                             <Form.Item
@@ -403,20 +500,18 @@ const ProfileDetail = () => {
 
                             <Form.Item {...tailFormItemLayout}>
                                 <Button type="primary" htmlType="submit">
-                                    Update
+                                    Register
                                 </Button>
                             </Form.Item>
+
                         </Form>
-                    </Col>
-                    <Col sm={4}></Col>
 
-                </Row>
+                    </Card>
+                </Col>
+                <Col sm={4}></Col>
+            </Row>
+        </div>
 
-            </Content>
-            <Footer>Footer</Footer>
-        </Layout>
-
-        
     </>
     )
 }
