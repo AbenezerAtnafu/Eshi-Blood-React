@@ -1,8 +1,9 @@
 import { Form, Input, Button, Typography, Card } from "antd";
-import Header from "../../components/user/header";
-import Events from "../user/event/events";
+import { Link } from "react-router-dom";
 
 import "./style.css";
+
+const {Title} = Typography;
 
 const Login = () => {
   const handleSubmit = (values) => {
@@ -19,9 +20,10 @@ const Login = () => {
          
       </div>
       <div class="login-content">
-        <form action="index.html">
+        <form action="index.html" className="box-shadow" style={{width:400,padding:20}}>
           
-          <h2 class="title">Eshi Blood</h2>
+          <Title level={3}>Eshi Blood Login</Title>
+          
               <Form initialValues={{}} onFinish={handleSubmit}>
               <Form.Item
                 name="email"
@@ -42,6 +44,7 @@ const Login = () => {
 
               </Form.Item>
             </Form>
+            <Link to="/sign-up">Register here</Link>
               </form>
           </div>
       </div>

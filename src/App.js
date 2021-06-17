@@ -34,9 +34,9 @@ const App = () => {
         <EventsList />
       </Route> */}
 
-      <Route path="/admin">
+      {/* <Route path="/admin">
         <AdminDashboard />
-      </Route>
+      </Route> */}
 
       <Route path="*">
         <NotFoundPage />

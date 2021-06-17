@@ -70,19 +70,9 @@ const EventsPage = () => {
   };
   return (
     <>
-<<<<<<< HEAD
     {event.map((m) => {
       return <EventCard event={m}/>
     })}
-=======
-      <div>
-        <EventCard></EventCard>
-        <EventCard></EventCard>
-        {/* 
-        <EventCard></EventCard>
-        <EventCard></EventCard> */}
-      </div>
->>>>>>> b0659b11f5aefcac924605fbfae6d0fcdbfe2d52
     </>
   );
 };

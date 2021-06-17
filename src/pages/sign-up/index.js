@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Layout, Form, Row, Col, Input, Cascader, DatePicker, Select, Button } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { Form, Input, Cascader, DatePicker, Select, Button, Typography } from 'antd';
 import "./style.css";
 
-const { Header, Footer, Sider, Content } = Layout;
+const {Title} = Typography;
 
 const { Option } = Select;
 const residences = [
@@ -226,6 +226,7 @@ const residences = [
     ],
   },
   {
+
     value: 'Somali',
     label: 'Somali',
     children: [
@@ -310,8 +311,8 @@ function handleChange(value) {
 }
 
 
-
 const SignUpPage = () => {
+
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
@@ -329,159 +330,158 @@ const SignUpPage = () => {
       </Select>
     </Form.Item>
   );
+  return (
+    <>
+      <div class="container">
+        <div class="img">
+          <img src={window.location.origin + '/bg2.svg'} />
 
-  return (<>
-    <Layout>
-      <Content>
-        <Row>
-          <Col sm={18}>
-            <Row>
-              <Col offset={16}><h1>Register</h1></Col>
-            </Row>
-            <div className="signup-container">
 
-              <Form
-                {...formItemLayout}
-                form={form}
-                name="register"
-                onFinish={onFinish}
-                initialValues={{
-                  residence: ['Addis Ababa', '6Kilo', 'ShiroMeda'],
-                  prefix: '251',
+        </div>
+        <div class="login-content">
+          <Form
+            {...formItemLayout}
+            form={form}
+            name="register"
+            className="box-shadow"
+            style={{width:600,paddingRight:80,paddingTop:20}}
+            onFinish={onFinish}
+            initialValues={{
+              residence: ['Addis Ababa', '6Kilo', 'ShiroMeda'],
+              prefix: '251',
+            }}
+            scrollToFirstError
+          >
+            <Title level={3}>Eshi Blood Register</Title>
+            <Form.Item name="firstname" label="First name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your first name!',
+                },
+              ]}>
+              <Input placeholder="First name" />
+            </Form.Item>
+
+            <Form.Item name="lastname" label="Last name" rules={[
+              {
+                required: true,
+                message: 'Please enter your last name!',
+              },
+            ]}>
+              <Input placeholder="Last name" />
+            </Form.Item>
+
+            <Form.Item label="Gender">
+              <Select defaultValue="Male" onChange={handleChange}>
+                <Option value="Male">Male</Option>
+                <Option value="Female">Female</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item label="Birth date">
+              <DatePicker className="date-picker"/>
+            </Form.Item>
+
+            <Form.Item name="username" label="User name" rules={[
+              {
+                type: 'string',
+                required: true,
+                message: 'Please input a username!',
+              },
+            ]}>
+              <Input placeholder="User name" />
+            </Form.Item>
+
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'The input is not valid Email!',
+                },
+                {
+                  required: true,
+                  message: 'Please input your Email!',
+                },
+              ]}
+            >
+              <Input placeholder="Email" />
+            </Form.Item>
+
+            <Form.Item label="Martial Status">
+              <Select defaultValue="Single" onChange={handleChange}>
+                <Option value="Male">Single</Option>
+                <Option value="Female">Married</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              name="residence"
+              label="Address"
+              rules={[
+                {
+                  type: 'array',
+                  required: true,
+                  message: 'Please enter your address!',
+                },
+              ]}
+            >
+              <Cascader options={residences} placeholder="City / Subcity / Woreda" />
+            </Form.Item>
+
+            <Form.Item
+              name="bloodtype"
+              label="Blood Type"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter your blood type!',
+                },
+              ]}
+            >
+              <Select placeholder="Blood Type">
+                <Option value="A+">A+</Option>
+                <Option value="A-">A-</Option>
+                <Option value="B+">B+</Option>
+                <Option value="B-">B-</Option>
+                <Option value="AB">AB</Option>
+                <Option value="O+">O+</Option>
+                <Option value="O-">O-</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              name="phone"
+              label="Phone Number"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your phone number!',
+                },
+              ]}
+            >
+              <Input
+                addonBefore={prefixSelector}
+                style={{
+                  width: '100%',
                 }}
-                scrollToFirstError
-              >
-                <Form.Item name="firstname" label="First name"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please enter your first name!',
-                    },
-                  ]}>
-                  <Input placeholder="First name" />
-                </Form.Item>
+              />
+            </Form.Item>
 
-                <Form.Item name="lastname" label="Last name" rules={[
-                  {
-                    required: true,
-                    message: 'Please enter your last name!',
-                  },
-                ]}>
-                  <Input placeholder="Last name" />
-                </Form.Item>
+            <Form.Item {...tailFormItemLayout}>
+              <input type="submit" class="btn" value="Register" />
 
-                <Form.Item label="Gender">
-                  <Select defaultValue="Male" style={{ width: 120 }} onChange={handleChange}>
-                    <Option value="Male">Male</Option>
-                    <Option value="Female">Female</Option>
-                  </Select>
-                </Form.Item>
+              <Link to="/login" className="already-have-account">Already have account?</Link>
+            </Form.Item>
+          </Form>
+      </div>
+    </div>
 
-                <Form.Item label="Birth date">
-                  <DatePicker />
-                </Form.Item>
 
-                <Form.Item name="username" label="User name" rules={[
-                  {
-                    type: 'string',
-                    required: true,
-                    message: 'Please input a username!',
-                  },
-                ]}>
-                  <Input placeholder="User name" />
-                </Form.Item>
-
-                <Form.Item
-                  name="email"
-                  label="Email"
-                  rules={[
-                    {
-                      type: 'email',
-                      message: 'The input is not valid Email!',
-                    },
-                    {
-                      required: true,
-                      message: 'Please input your Email!',
-                    },
-                  ]}
-                >
-                  <Input placeholder="Email" />
-                </Form.Item>
-
-                <Form.Item label="Martial Status">
-                  <Select defaultValue="Single" style={{ width: 120 }} onChange={handleChange}>
-                    <Option value="Male">Single</Option>
-                    <Option value="Female">Married</Option>
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name="residence"
-                  label="Address"
-                  rules={[
-                    {
-                      type: 'array',
-                      required: true,
-                      message: 'Please enter your address!',
-                    },
-                  ]}
-                >
-                  <Cascader options={residences} placeholder="City / Subcity / Woreda" />
-                </Form.Item>
-
-                <Form.Item
-                  name="bloodtype"
-                  label="Blood Type"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please enter your blood type!',
-                    },
-                  ]}
-                >
-                  <Select placeholder="Blood Type">
-                    <Option value="A+">A+</Option>
-                    <Option value="A-">A-</Option>
-                    <Option value="B+">B+</Option>
-                    <Option value="B-">B-</Option>
-                    <Option value="AB">AB</Option>
-                    <Option value="O+">O+</Option>
-                    <Option value="O-">O-</Option>
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name="phone"
-                  label="Phone Number"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your phone number!',
-                    },
-                  ]}
-                >
-                  <Input
-                    addonBefore={prefixSelector}
-                    style={{
-                      width: '100%',
-                    }}
-                  />
-                </Form.Item>
-
-                <Form.Item {...tailFormItemLayout}>
-                  <Button type="primary" htmlType="submit">
-                    Register
-                  </Button>
-                </Form.Item>
-              </Form>
-            
-            </div>
-          </Col>
-        </Row>
-      </Content>
-    </Layout>
-
-  </>);
-}
+    </>
+  );
+};
 
 export default SignUpPage;
