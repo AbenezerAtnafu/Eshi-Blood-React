@@ -10,36 +10,43 @@ const Login = () => {
   };
   return (
     <>
+      {/* <img src={window.location.origin + '/wave.png'}/>      */}
 
-    <div className="login-container">
-      
-      <Card className="login-card">
-        <Typography.Title style={{ textAlign: "center" }}>
-          Login
-        </Typography.Title>
-        <Form initialValues={{}} onFinish={handleSubmit}>
-          <Form.Item
-            name="email"
-            rules={[{ required: true, message: "Please input your email!" }]}
-          >
-            <Input size="large" placeholder="Email Address" />
-          </Form.Item>
+    <div class="container">
+      <div class="img">
+      <img src={window.location.origin + '/bg.svg'}/>     
 
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password size="large" placeholder="Password" />
-          </Form.Item>
+         
+      </div>
+      <div class="login-content">
+        <form action="index.html">
+          
+          <h2 class="title">Eshi Blood</h2>
+              <Form initialValues={{}} onFinish={handleSubmit}>
+              <Form.Item
+                name="email"
+                rules={[{ required: true, message: "Please input your email!" }]}
+              >
+                <Input size="large" placeholder="Email Address" />
+              </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Login
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
+              <Form.Item
+                name="password"
+                rules={[{ required: true, message: "Please input your password!" }]}
+              >
+                <Input.Password size="large" placeholder="Password" />
+              </Form.Item>
+
+              <Form.Item>
+              <input type="submit" class="btn" value="Login"/>
+
+              </Form.Item>
+            </Form>
+              </form>
+          </div>
+      </div>
+    
+
     </>
   );
 };

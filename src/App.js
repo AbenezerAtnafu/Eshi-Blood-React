@@ -24,9 +24,9 @@ const App = () => {
       <UserLayout />
 
       </Route>
-      <Route path="/requests">
+      {/* <Route path="/requests">
         <RequestsPage />
-      </Route>
+      </Route> */}
      
       <Route path="*">
         <NotFoundPage />

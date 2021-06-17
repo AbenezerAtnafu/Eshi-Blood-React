@@ -66,11 +66,11 @@ class UserLayout extends React.Component {
       <Layout style={{ padding: '0 24px 24px' }}>
        
         <Content
-          className="site-layout-background"
+          // className="site-layout-background"
           style={{
             padding: 24,
             margin: 0,
-            minHeight: 280,
+            minHeight: '100vh',
           }}
         >
           <Switch>
