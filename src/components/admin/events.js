@@ -1,67 +1,90 @@
 import React from "react";
-import { Table, Input, Button, Space } from "antd";
+import {
+  Table,
+  Input,
+  Button,
+  Space,
+  Drawer,
+  Form,
+  Col,
+  Row,
+  Select,
+  DatePicker,
+  Typography,
+  Card,
+  Spin,
+} from "antd";
 import { Link } from "react-router-dom";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  PlusOutlined,
+  CloseCircleOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 
-const data = [
-  {
-    key: "5",
-    Status: "Pending",
-    Slogan: "Let's Donate",
+import CreateEvent from "./createEvent";
 
-    UpdatedAt: null,
-    EventName: "rotract blood donating session",
-    EventGoal: 50,
-    EventOrganizer: 2,
-    TotalDonations: 10,
-    EventId: 3,
-    CreatedAt: "Jun 16 2020",
-  },
-  {
-    key: "6",
-    Status: "Closed",
-    Slogan: "Let's Donate",
+const axios = require("axios");
+const { Option } = Select;
+const { Title } = Typography;
 
-    UpdatedAt: null,
-    EventName: "rotract blood donating session",
-    EventGoal: 50,
-    EventOrganizer: 2,
-    TotalDonations: 10,
-    EventId: 3,
-    CreatedAt: "Jun 16 2020",
-  },
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Joe Black",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Jim Green",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
+const cardStyle = {
+  borderRadius: "16px",
+  marginRight: "24px",
+  boxShadow: "5px 8px 24px 5px rgba(208, 216, 243, 0.6)",
+};
 
 class EventsList extends React.Component {
-  state = {
-    searchText: "",
-    searchedColumn: "",
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: [],
+      searchText: "",
+      searchedColumn: "",
+      visible: false,
+    };
+  }
+  // state = {};
+
+  // fetching api
+
+  getCookie = (cookieName) => {
+    let cookie = {};
+    document.cookie.split(";").forEach(function (el) {
+      let [key, value] = el.split("=");
+      cookie[key.trim()] = value;
+    });
+    return cookie[cookieName];
   };
+
+  componentDidMount() {
+    axios
+      .get("http://127.0.0.1:5000/events/", {
+        headers: {
+          token: this.getCookie("token"),
+        },
+      })
+      .then(
+        (result) => {
+          console.log(result);
+          //res.json();
+          if (result.data)
+            this.setState({
+              isLoaded: true,
+              items: result.data,
+            });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
 
   getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
@@ -159,20 +182,30 @@ class EventsList extends React.Component {
     this.setState({ searchText: "" });
   };
 
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
+  };
+
   render() {
     const columns = [
       {
         title: "Event Name",
         dataIndex: "EventName",
         key: "EventName",
-        width: "30%",
         ...this.getColumnSearchProps("EventName"),
       },
       {
         title: "Slogan",
-        dataIndex: "Slogan",
-        key: "Slogan",
-        width: "20%",
+        dataIndex: "EventSlogan",
+        key: "EventSlogan",
         ...this.getColumnSearchProps("Slogan"),
       },
       {
@@ -189,28 +222,23 @@ class EventsList extends React.Component {
       },
       {
         title: "Start Date",
-        dataIndex: "startDate",
-        key: "startDate",
+        dataIndex: "StartDate",
+        key: "StartDate",
         ...this.getColumnSearchProps("startDate"),
       },
       {
         title: "End Date",
-        dataIndex: "endDate",
-        key: "endDate",
+        dataIndex: "EndDate",
+        key: "EndDate",
         ...this.getColumnSearchProps("endDate"),
       },
       {
         title: "Organizer Name",
-        dataIndex: "organizerName",
-        key: "organizerName",
+        dataIndex: "FirstName",
+        key: "FirstName",
         ...this.getColumnSearchProps("organizerName"),
       },
-      {
-        title: "Organizer's Phone",
-        dataIndex: "organizerPhone",
-        key: "organizerPhone",
-        ...this.getColumnSearchProps("organizerPhone"),
-      },
+      
       {
         title: "Status",
         dataIndex: "Status",
@@ -221,21 +249,74 @@ class EventsList extends React.Component {
         title: "Action",
         dataIndex: "",
         key: "x",
+        width: "10%",
         render: () => (
-          <div>
-            <a>Close</a> | <a>Delete</a>
-          </div>
+          <>
+            <Link to="/admin/events/create" style={{ marginLeft: "1rem" }}>
+              <CloseCircleOutlined
+                style={{ fontSize: "16px", color: "#08c" }}
+              />
+            </Link>{" "}
+            <Link to="/admin/events/create" style={{ marginLeft: "1rem" }}>
+              <DeleteOutlined style={{ fontSize: "16px", color: "#08c" }} />
+            </Link>
+          </>
         ),
       },
     ];
-    return (
-      <div>
-        <Button type="primary">
-          <Link to="/admin/events/create">New Event</Link>
-        </Button>
-        <Table columns={columns} dataSource={data} />
-      </div>
-    );
+
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else {
+      return (
+        <>
+          <Card>
+            <Row>
+              <Col span={14}>
+                <Title level={2}>EVENTS</Title>
+              </Col>
+              <Col span={2} offset={7}>
+                <Button type="primary" onClick={this.showDrawer}>
+                  <PlusOutlined /> New Event
+                </Button>
+              </Col>
+            </Row>
+            <Drawer
+              title="Create a new Event"
+              width={720}
+              onClose={this.onClose}
+              visible={this.state.visible}
+              bodyStyle={{ paddingBottom: 80 }}
+              // footer={
+              //   <div
+              //     style={{
+              //       textAlign: "right",
+              //     }}
+              //   >
+              //     <Button onClick={this.onClose} style={{ marginRight: 8 }}>
+              //       Cancel
+              //     </Button>
+              //     <Button onClick={this.onClose} type="primary">
+              //       Submit
+              //     </Button>
+              //   </div>
+              // }
+            >
+              <CreateEvent onClose={this.onClose} />
+            </Drawer>
+            <Card style={cardStyle}>
+              <Table
+                rowKey={(record) => `${record.EventId}`}
+                columns={columns}
+                dataSource={items}
+                loading={!isLoaded}
+              />
+            </Card>
+          </Card>
+        </>
+      );
+    }
   }
 }
 

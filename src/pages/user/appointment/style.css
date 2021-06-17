@@ -1,0 +1,29 @@
+.space-align-container {
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-align-block {
+    flex: none;
+    margin: 8px 4px;
+    padding: 4px;
+    border: 1px solid #40a9ff;
+}
+
+.space-align-block .mock-block {
+    display: inline-block;
+    padding: 32px 8px 16px;
+    background: rgba(150, 150, 150, 0.2);
+}
+
+.about-donation {
+    font-size: 18px;
+}
+
+
+.box-shadow {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}

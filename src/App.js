@@ -3,6 +3,7 @@ import LoginPage from "./pages/login";
 import SignUpPage from "./pages/sign-up";
 import NotFoundPage from "./pages/not-found";
 import AdminDashboard from "./pages/admin";
+import UserLayout from "./components/user/user-layout";
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
       </Route>
       <Route path="/sign-up">
         <SignUpPage />
+      </Route>
+      <Route path="/user-layout">
+        <UserLayout />
       </Route>
       {/* 
         Admin route
