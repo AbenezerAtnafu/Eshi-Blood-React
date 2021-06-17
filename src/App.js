@@ -2,7 +2,6 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/login";
 import SignUpPage from "./pages/sign-up";
 import NotFoundPage from "./pages/not-found";
-import EventsPage from "./pages/user/event/events";
 import RequestsPage from "./pages/user/request/requests";
 import UserLayout from "./components/user/user-layout";
 const App = () => {
@@ -11,27 +10,38 @@ const App = () => {
       <Route exact path="/">
         <LoginPage />
       </Route>
+
       <Route path="/login">
         <LoginPage />
       </Route>
+
       <Route path="/sign-up">
         <SignUpPage />
       </Route>
-      {/* <Route path="/events">
-        <EventsPage/>
-      </Route> */}
-      <Route path="/user-layout">
-      <UserLayout />
 
+
+      <Route path="/user-layout">
+        <UserLayout />
       </Route>
-      {/* <Route path="/requests">
+
+      <Route path="/requests">
         <RequestsPage />
+      </Route>
+      {/* 
+        Admin route
+      */}
+      {/* <Route path="/admin/events">
+        <EventsList />
       </Route> */}
-     
+
+      <Route path="/admin">
+        <AdminDashboard />
+      </Route>
+
       <Route path="*">
         <NotFoundPage />
       </Route>
-      
+
     </Switch>
   );
 };

@@ -1,27 +1,19 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Card, Divider, Typography} from "antd";
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined
-} from "@ant-design/icons";
-
+import { Layout, Menu, Divider, Typography} from "antd";
+import {UserOutlined} from "@ant-design/icons";
 
 import { Route, Switch, Link } from "react-router-dom";
 import EventsPage from "../../pages/user/event/events";
 
 import "./style.css";
 import RequestsPage from "../../pages/user/request/requests";
+import CreateAppointment from "../../pages/user/appointment/create-appointment";
+import ProfileDetail from "../../pages/user/profile/profile-detail";
+
 const { Title, Text } = Typography;
 
-//import DonationCenter from './donationCenter';
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
 
 class UserLayout extends React.Component {
   state = {
@@ -49,7 +41,7 @@ class UserLayout extends React.Component {
 
             <Divider />
             <Menu.Item key="sub1" icon={<UserOutlined />} title="Appointments">
-              <Link to="/user-layout/appoitnment">Appointment</Link>
+              <Link to="/user-layout/appointment">Appointment</Link>
             </Menu.Item>
             <Menu.Item key="sub2" icon={<UserOutlined />} title="Requests">
               <Link to="/user-layout/requests">Request</Link>
@@ -58,7 +50,7 @@ class UserLayout extends React.Component {
               <Link to="/user-layout/events">Event</Link>
             </Menu.Item>
             <Menu.Item key="sub4" icon={<UserOutlined />} title="Profles">
-              <Link to="/user-layout/profile">My Profile</Link>
+              <Link to="/user-layout/profiles">My Profile</Link>
             </Menu.Item>
           
         </Menu>
@@ -71,32 +63,19 @@ class UserLayout extends React.Component {
             padding: 24,
             margin: 0,
             minHeight: '100vh',
+            minHeight: 200, 
+            height: '100vh'
           }}
         >
           <Switch>
-            {/* <Route exact path="/user-layout/appoitnment" component={AppointmentPage}></Route> */}
+            <Route exact path="/user-layout/appointment" component={CreateAppointment}></Route>
             <Route exact path="/user-layout/requests" component={RequestsPage}></Route>
             <Route exact path="/user-layout/events" component={EventsPage}></Route>
-            {/* <Route exact path="/user-layout/profiles" component={ProfilePage}></Route> */}
+            <Route exact path="/user-layout/profiles" component={ProfileDetail}></Route>
           </Switch>
         </Content>
       </Layout>
     </Layout>
-    //   <Layout style={{ minHeight: "100vh" }}>
-    //     <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-    //       <div className="logo" />
-          
-           
-            
-           
-            
-    //       </Menu>
-    //     </Sider>
-    //     <Layout className="site-layout">
-          
-    //       {/* <DonationCenter></DonationCenter> */}
-    //     </Layout>
-    //   </Layout>
     );
   }
 }

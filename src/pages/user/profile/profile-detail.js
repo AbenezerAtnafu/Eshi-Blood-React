@@ -340,7 +340,7 @@ const ProfileDetail = () => {
         "Woreda": "08",
         "Appointments": 13,
         "Email": "semeretalegn627@gmail.com",
-        "PhoneNumber":"0966303009"
+        "PhoneNumber":"0953894183"
     });
 
     return (<>
