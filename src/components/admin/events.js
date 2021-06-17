@@ -197,7 +197,7 @@ class EventsList extends React.Component {
   render() {
     const columns = [
       {
-        title: "Event Name",
+        title: "NAME",
         dataIndex: "EventName",
         key: "EventName",
         ...this.getColumnSearchProps("EventName"),
@@ -209,13 +209,13 @@ class EventsList extends React.Component {
         ...this.getColumnSearchProps("Slogan"),
       },
       {
-        title: "EventGoal",
+        title: "GOAL",
         dataIndex: "EventGoal",
         key: "EventGoal",
         ...this.getColumnSearchProps("EventGoal"),
       },
       {
-        title: "Total Donations",
+        title: "TOTAL DONATIONS",
         dataIndex: "TotalDonations",
         key: "TotalDonations",
         ...this.getColumnSearchProps("TotalDonations"),
@@ -240,13 +240,19 @@ class EventsList extends React.Component {
       },
       
       {
-        title: "Status",
+        title: "STATUS",
         dataIndex: "Status",
         key: "Status",
         ...this.getColumnSearchProps("Status"),
       },
       {
-        title: "Action",
+        title: "TYPE",
+        dataIndex: "Type",
+        key: "Type",
+        ...this.getColumnSearchProps("Type"),
+      },
+      {
+        title: "ACTION",
         dataIndex: "",
         key: "x",
         width: "10%",

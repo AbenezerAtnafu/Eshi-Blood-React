@@ -279,10 +279,16 @@ class DonationCenter extends React.Component {
         ...this.getColumnSearchProps("City"),
       },
       {
-        title: "Status",
+        title: "STATUS",
         dataIndex: "Status",
         key: "Status",
         ...this.getColumnSearchProps("Status"),
+      },
+      {
+        title: "TYPE",
+        dataIndex: "Type",
+        key: "Type",
+        ...this.getColumnSearchProps("Type"),
       },
       {
         title: "Action",
